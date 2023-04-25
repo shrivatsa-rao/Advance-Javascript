@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* type1:
+        function prom(comp)
+        {
+            return new Promise(function(resolve,reject)
+            {
+                if(comp)
+                {
+                    resolve("I am success");//if true then resolve is called,prom returns a promise and resolve sends some message
+                }
+                else
+                {
+                    reject("I am fail");
+                }
+            });
+        }
+
+        let onfil=(res)=>{//res stores the value which comes from resolve.
+            console.log(res);
+        }
+
+        let onfail=(err)=>{
+            console.log(err);
+        }
+        /*
+        prom(true).then(onfil);//if success onfil is called and in onfil res stores the value sent by the resolve.
+        prom(true).catch(onfail);//if failure then onfail is called and in onfail err stores the value sent by the reject.
+
+    
+       //in one line
+       prom(false).then(onfil).catch(onfail);
+
+       */
+
+       console.log("start");
+
+       function prom(comp){
+        return new Promise(function(resolve,reject){
+            setTimeout(()=>{
+                if(comp)
+                {
+                    resolve("I am success");
+                }
+                else
+                {
+                    reject("Iam fail");
+                }
+            },5000);
+        })
+       }
+
+       prom(false).then((res)=>{//here false is sent to prom
+        //after it is fasilure so reject will pass the message to catch then it will printed
+        console.log(res);
+       }).catch((err)=>{
+        console.log(err);
+       })
+
+       console.log("end");
+    </script>
+</body>
+</html>

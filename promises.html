@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*call backs are not always asynchronous.they can be synchronous also.
+
+        console.log("start");
+        const roll=[1,2,3,4,5,6]
+        roll.forEach(r=>{
+            console.log(r);
+        })
+        console.log("end");
+
+        this will tell us that callback can be synchronous.
+
+        */
+
+       /* console.log("start");
+        function getname(name)
+        {
+            setTimeout(()=>{
+                console.log("inside settiomeout");
+                return name;
+            },2000)
+
+        }
+        //here the function call will happen so it will return the name to the nm.
+        //but while returning the name to nm it will take 2 sec so 
+        const nm=getname("sonam");
+        //before returning the name console log will be printed
+        //because it is taking too much time to fetch the data
+        //it will log undefined in the console.
+        //this problem can be solved using call backs which is written beelow.
+        console.log(nm);
+        console.log("end");
+        */
+
+
+        //to solve undefined issue we will be using callbacks
+
+       /*
+        console.log("start");
+        function getname(name,callback)
+        {
+            setTimeout(()=>{
+                console.log("Inside settimeout");
+                callback(name);//here callback function is invoked.
+            },2000);
+        }
+
+        const nm=getname('sonam',(nm)=>{
+            console.log(nm);//here function is sent to callback
+
+
+        })
+
+    console.log("end");
+    */
+//callback hell means that one callback is written  inside another callback and it takes so much time on this and it will be complex and 
+//to avoid this callback hell we use promise.
+//in one callback depends on another callback function and third callback depends on second callback function and so on
+//so this will become complex to understand for the user to read hence to overcome this call back hell we use promises.
+
+//here is the example for callback hell
+
+/*
+console.log("start");
+
+function getname(name,callback){
+    setTimeout(()=>{
+        console.log("Inside Name settimeeout");
+        callback(name);
+    },2000);
+
+}
+
+    function gethob(name,callback){
+    setTimeout(()=>{
+        console.log("Inside hibiies settime");
+        callback(['csk','kkr','rrr']);
+    },5000);
+
+}
+
+
+const nm=getname('sonam',
+(nm)=>{console.log(nm);gethob(nm,(hobby)=>{
+    console.log(hobby)//here gethobby is written insdie the getname so here gethobby is dependent 
+    //on getname until we won't get the output from getname we can't proceed for gethobby
+    //so here one callback is in another callback hence it is call back hell.
+
+})})
+console.log("end");
+
+*/
+
+//promise
+//three states in promise:-
+/*
+1)pending state:- intial state, not yet fulfilled or rejected
+2)fulfilled/resolved:-promise completed
+3)rejected-promise failed.
+
+promise is resolved we will use .then() or finally().
+
+promise is rejected we will use .then() for failue and .catch() and .finally().
+.then() can be for success as well as failure.
+
+.then() method returns a promise and it has two parameters
+
+//basic promises
+*/
+
+/* first type of promises
+const prom=new Promise((resolve,reject)=>{
+    let req=true;
+    if(req==true){
+        resolve("request success");
+    }
+    else
+    {
+        reject("request rejected");
+    }
+});
+
+prom.then(
+    (value)=>{
+        console.log(value);//if req is true then resolve come to value and it will console as request success
+    },
+    (error)=>{
+        console.log(error)
+        //if req is false then error will be executed.here reject will call the error and error will console as request failed.
+    }
+)
+
+*/
+/* second type
+
+const prom=new Promise((resolve,reject)=>{
+    let req=true;
+    if(req==true){
+        resolve("request success");
+    }
+    else
+    {
+        reject("request rejected");
+    }
+}).then(
+    (value)=>{
+        console.log(value);
+    },
+    (error)=>{
+        console.log(error)
+
+    }
+)
+*/
+
+/*
+
+const prom=new Promise((resolve,reject)=>{
+    let req=true;
+    if(req==false){
+        resolve("request success");//here u can add the data
+    }
+    else
+    {
+        reject("request rejected");
+    }
+}).then(
+    (value)=>{
+        console.log(value);//here u can write the logic
+    }
+).catch((error)=>{
+    console.log(error)
+})
+
+*/
+/*
+this chaining promise
+
+const prom =new Promise((resolve,reject)=>{
+    let num=10
+    resolve(num);//this resolve pass num to the value and then it prints console.log and then it return a promise this promise is returned to second then were it consoles the value
+}).then((value)=>{
+    console.log(value);
+    return value+10;
+}).then((value)=>{
+    console.log(value);
+})
+
+*/
+
+
+//promise mainly used to look your code very clean.
+
+/*real worl case using promises
+
+console.log("start");
+
+function getname(name)
+{
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+        console.log("inside name");
+        resolve(name);//here function call will happen using resolve
+    },2000);
+
+    })
+   
+}
+
+
+
+
+
+function gethobby(name)
+{
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+        console.log("inside hobby");
+        resolve(['csk','kkr','rrr']);
+    },1000);
+
+    })
+   
+}
+
+getname('sonam').then(nm=>gethobby(nm)).then(hobby=>console.log(hobby));
+console.log("end");
+*/
+
+/*
+async :-we can convert any function into async function 
+await is used to wait for promise . it can only be used inside a async function within regular js.
+await can be put in front of any async promise-based function to pause your code on that line until the promise fulfills
+*/
+
+
+//using async and await 
+
+/*
+console.log("start");
+
+function getname(name)
+{
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+        console.log("inside name");
+        resolve(name);//here function call will happen using resolve
+    },2000);
+
+    })
+   
+}
+
+
+
+
+
+function gethobby(name)
+{
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+        console.log("inside hobby");
+        resolve(['csk','kkr','rrr']);
+    },1000);
+
+    })
+   
+}
+
+
+async function show()
+{
+    try{
+         const nm=await getname('sonam');
+    const hob=await gethobby(nm);
+    console.log(hob);
+    }catch(){
+        console.log("erro");
+    }
+   
+}
+
+show();
+
+console.log("end");
+
+*/
+
+    </script>
+</body>
+</html>

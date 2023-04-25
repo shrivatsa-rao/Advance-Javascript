@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>doc</title>
+
+</head>
+<body>
+    <script>
+
+     /*   async function test(){
+        console.log("2:mess");
+        const resp=await fetch("./stud.json");//fetch brings all data of json
+        //await helps to wait until all data is recieved till then it will prints 
+        console.log("3:mess");
+        const stur=await resp.json();//ftech return promise so we wil add await and data will be in the json format
+        
+        return stur
+    }
+
+    console.log("1:mess");
+    let a=test();
+
+    console.log("4:mess");
+    console.log(a);
+    */
+
+    //using try and catch
+
+    async function test()
+    {
+        try
+        {
+        const resp=await fetch("./stud.json");
+        const stur=await resp.json();
+        return stur;
+        
+        }catch(err)
+        {
+            console.log(err);
+        }
+    }
+
+    test().then((res)=>{
+        console.log(res);//success ful result will be printed here
+    })
+
+
+    </script>
+    
+</body>
+</html>

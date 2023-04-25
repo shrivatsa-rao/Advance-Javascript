@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    /*
+    if ur using aysnc and await then it will be easy to use
+    to remove th compilcations we use asyc and await
+    */
+
+    //async return promise.
+
+    //await 
+
+    async function test()
+    {
+        console.log("2:mess");
+        await console.log("3:mess");//here await prints 3:mess after that below statement won't be prinyed
+        //it goes out and does other operations then it comes back here then it prints console.log('4:mess');
+        console.log("4:mess");
+    }
+
+    console.log("1:mess");
+    test();
+    console.log("5:mess");
+    </script>
+</body>
+</html>
